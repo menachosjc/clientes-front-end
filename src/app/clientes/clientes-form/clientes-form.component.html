@@ -1,6 +1,6 @@
 <h1 class="mt-4">Clientes</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Cadastro</li>
+    <li class="breadcrumb-item active">{{cliente.id ? 'Editar' : 'Cadastrao'}}</li>
 </ol>
 
 <div class="container">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="cliente.id">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>ID:</label>
@@ -49,12 +49,18 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2">
-                <button type="submit" class="btn-success">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success">
                     <i class="fa fa-save"></i>
                     Salvar
                 </button>
+
+                <button type="button" class="btn btn-primary ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left"></i>
+                    Voltar
+                </button>
             </div>
+
         </div>
 
     </form>
