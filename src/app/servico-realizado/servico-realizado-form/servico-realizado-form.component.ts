@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../clientes/cliente';
+import { servicoRealizado } from '../servicoRealizado'
 import { ClientesService } from '../../clientes.service'
 
 @Component({
@@ -9,11 +10,13 @@ import { ClientesService } from '../../clientes.service'
 })
 export class ServicoRealizadoFormComponent implements OnInit {
   clientes: Cliente[] = [];
-
+  servico: servicoRealizado;
 
   constructor(
     private clientesService: ClientesService
-  ) { }
+  ){ 
+    this.servico = new servicoRealizado();
+  }
 
   ngOnInit(): void {
     this.clientesService.getClientes().subscribe(
@@ -22,7 +25,7 @@ export class ServicoRealizadoFormComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('submit');
+    console.log(this.servico);
   }
 
 }
