@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../clientes/cliente';
-import { servicoRealizado } from '../servicoRealizado'
-import { ClientesService } from '../../clientes.service'
+import { ClientesService } from '../../clientes.service';
+import { servicoRealizado } from './../servicoRealizado';
+import { ServicoRealizadoService } from './../../servico-realizado.service';
 
 @Component({
   selector: 'app-servico-realizado-form',
@@ -13,8 +14,9 @@ export class ServicoRealizadoFormComponent implements OnInit {
   servico: servicoRealizado;
 
   constructor(
-    private clientesService: ClientesService
-  ){ 
+    private clientesService: ClientesService,
+    private servicoService : ServicoRealizadoService
+  ){
     this.servico = new servicoRealizado();
   }
 
@@ -25,7 +27,11 @@ export class ServicoRealizadoFormComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.servico);
+    this.servicoService.salvar(this.servico).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
   }
 
 }
